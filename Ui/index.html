@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSK 3 Ultimate Learning (Font Toggle)</title>
+    <title>HSK 3 Ultimate Learning (Hanzi Back)</title>
     <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;700&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
 
@@ -18,9 +18,7 @@
             height: 100vh; margin: 0; overflow: hidden; color: #4a4a4a; user-select: none;
         }
 
-        .app-wrapper {
-            display: flex; align-items: center; gap: 40px;
-        }
+        .app-wrapper { display: flex; align-items: center; gap: 40px; }
 
         h1 {
             color: #8b0000; font-family: 'Noto Sans SC', sans-serif; font-weight: bold;
@@ -29,9 +27,7 @@
         }
 
         /* --- Card --- */
-        .card-container {
-            width: 520px; height: 720px; perspective: 1200px; position: relative;
-        }
+        .card-container { width: 520px; height: 720px; perspective: 1200px; position: relative; }
         .card {
             width: 100%; height: 100%; position: relative;
             transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -73,28 +69,28 @@
         .btn-audio { top: 25px; left: 25px; }
         .btn-stroke { top: 25px; left: 85px; } 
         .btn-write { top: 25px; left: 145px; border-color: #d35400; color: #d35400; }
-        .btn-font { top: 25px; left: 205px; border-color: #34495e; color: #34495e; font-weight: bold; font-size: 18px; } /* ปุ่มเปลี่ยนฟอนต์ */
+        .btn-font { top: 25px; left: 205px; border-color: #34495e; color: #34495e; font-weight: bold; font-size: 18px; }
         
         .btn-star { top: 20px; right: 25px; border: none; background: none; box-shadow: none; font-size: 45px; color: #e0e0e0; }
         .btn-star.active { color: #ffd700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.8); transform: scale(1.2); }
         .btn-quiz { top: 25px; right: 80px; }
         .btn-mic { top: 25px; right: 140px; }
 
-        /* --- Front & Back --- */
+        /* --- Front --- */
         .card-front {
             background-color: #fffbf0;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d00000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2v4h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d00000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2v4h4V4h-4zM6 34v-4H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
         
         .hanzi-lg { 
-            font-family: 'Ma Shan Zheng', cursive; /* ฟอนต์เริ่มต้น (พู่กัน) */
+            font-family: 'Ma Shan Zheng', cursive;
             font-size: 140px; color: #8b0000; margin-bottom: 30px; 
             text-shadow: 3px 3px 0px rgba(0,0,0,0.1); 
             transition: font-family 0.3s;
         }
         
-        /* คลาสสำหรับฟอนต์ปกติ */
-        .hanzi-lg.normal-font {
+        /* Font Toggle Classes */
+        .hanzi-lg.normal-font, .hanzi-sm.normal-font {
             font-family: 'Noto Sans SC', sans-serif !important;
             font-weight: bold;
         }
@@ -106,9 +102,23 @@
         .stroke-char { border: 1px solid #d6c6a8; background: white; }
         .tap-hint { font-size: 18px; color: #a67c52; margin-top: 60px; border-top: 1px solid #d6c6a8; padding-top: 15px; width: 70%; text-align: center; }
 
+        /* --- Back --- */
         .card-back { background: linear-gradient(145deg, #8b0000 0%, #600000 100%); color: #fff; transform: rotateY(180deg); alignItems: flex-start; textAlign: left; overflow-y: auto; border-color: #d4af37; }
         .card-back::-webkit-scrollbar { width: 8px; }
         .card-back::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.3); border-radius: 4px; }
+        
+        /* Hanzi Small (ด้านหลัง) */
+        .hanzi-sm {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 70px; /* ขนาดกลางๆ */
+            color: #fff; /* สีขาว ตัดกับพื้นหลังแดง */
+            margin-bottom: 10px;
+            width: 100%;
+            text-align: left;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
         .header-group { width: 100%; border-bottom: 2px solid rgba(255, 215, 0, 0.3); padding-bottom: 15px; margin-bottom: 25px; }
         .pinyin { font-size: 36px; color: #ffd700; font-weight: 500; letter-spacing: 1px; }
         .meaning { font-size: 30px; font-weight: bold; margin-top: 10px; color: #fff; }
@@ -178,7 +188,9 @@
                 <button class="icon-btn btn-audio" title="Spacebar" onclick="playAudio(event)">🔊</button>
                 <button class="icon-btn btn-stroke" title="Press 'S'" onclick="playStroke(event)">👀</button>
                 <button class="icon-btn btn-write" title="Press 'W'" onclick="playHandwriting(event)">🖌️</button>
-                <button class="icon-btn btn-font" title="Press 'N' (Normal Font)" onclick="toggleFont(event)">Aa</button> <button class="icon-btn btn-mic" title="Press 'V'" onclick="startMic(event)">🎤</button>
+                <button class="icon-btn btn-font" title="Press 'N'" onclick="toggleFont(event)">Aa</button>
+                
+                <button class="icon-btn btn-mic" title="Press 'V'" onclick="startMic(event)">🎤</button>
                 <button class="icon-btn btn-quiz" title="Press 'Q'" onclick="startQuiz(event)">🎮</button>
                 <button class="icon-btn btn-star" id="star-btn" title="Press 'F'" onclick="toggleHard(event)">★</button>
 
@@ -204,6 +216,8 @@
                         <div class="tap-hint" id="front-hint">(แตะเพื่อดูความหมาย)</div>
                     </div>
                     <div class="card-face card-back">
+                        <div class="hanzi-sm" id="back-hanzi">...</div>
+
                         <div class="header-group">
                             <div class="pinyin" id="back-pinyin">...</div>
                             <div class="meaning" id="back-meaning">...</div>
@@ -296,11 +310,12 @@
         let hardList = []; let srsData = {}; let currentMode = 'all';
         let recognition; let writers = [];
         let studyStats = { streak: 0, lastDate: "" };
-        let isNormalFont = false; // สถานะฟอนต์
+        let isNormalFont = false;
 
         const els = {
             card: document.getElementById('flashcard'),
             hanzi: document.getElementById('front-hanzi'),
+            backHanzi: document.getElementById('back-hanzi'), // เพิ่มตัวนี้
             strokeContainer: document.getElementById('stroke-container'),
             pinyin: document.getElementById('back-pinyin'),
             meaning: document.getElementById('back-meaning'),
@@ -330,12 +345,9 @@
         // --- Init ---
         async function loadData() {
             try {
-                // *** ถ้าใช้ Live Server ให้ใช้ fetch('words.json') ***
-                // *** ถ้าเปิดไฟล์ตรงๆ ให้เอาข้อมูล JSON มาแปะในตัวแปร allWords ด้านบนแทน ***
                 const res = await fetch('words.json');
                 allWords = await res.json();
                 
-                // Load saved data
                 if(localStorage.getItem('hsk3_hard')) hardList = JSON.parse(localStorage.getItem('hsk3_hard'));
                 if(localStorage.getItem('hsk3_srs')) srsData = JSON.parse(localStorage.getItem('hsk3_srs'));
                 if(localStorage.getItem('hsk3_stats')) studyStats = JSON.parse(localStorage.getItem('hsk3_stats'));
@@ -416,10 +428,16 @@
             
             const item = currentDeck[currentIndex];
             els.hanzi.innerText = item.hanzi;
+            els.backHanzi.innerText = item.hanzi; // ใส่ตัวจีนด้านหลังด้วย
             
-            // Apply Font
-            if(isNormalFont) els.hanzi.classList.add('normal-font');
-            else els.hanzi.classList.remove('normal-font');
+            // Toggle Font
+            if(isNormalFont) {
+                els.hanzi.classList.add('normal-font');
+                els.backHanzi.classList.add('normal-font');
+            } else {
+                els.hanzi.classList.remove('normal-font');
+                els.backHanzi.classList.remove('normal-font');
+            }
 
             els.pinyin.innerText = item.pinyin;
             els.meaning.innerText = item.meaning;
