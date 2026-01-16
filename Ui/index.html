@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSK 3 Flashcard (600 Words)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- จัดหน้าจอหลัก --- */
+        body {
+            font-family: 'Sarabun', 'Noto Sans SC', sans-serif;
+            background-color: #eef2f3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* ป้องกัน Scroll หน้าจอหลัก */
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        /* --- ตัว Container ของการ์ด (Scene) --- */
+        .card-container {
+            width: 340px;
+            height: 480px; /* ทรงสี่เหลี่ยมผืนผ้าแนวตั้งเหมือนมือถือ */
+            perspective: 1000px; /* สร้างระยะลึก 3D */
+            margin-bottom: 20px;
+        }
+
+        /* --- ตัวการ์ด (Card) --- */
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animation เด้งดึ๋งเล็กน้อย */
+            transform-style: preserve-3d;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 20px;
+        }
+
+        /* เมื่อการ์ดถูกพลิก (เติม class นี้ด้วย JS) */
+        .card.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        /* --- หน้าและหลังการ์ด --- */
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden; /* ซ่อนด้านหลังเวลาพลิก */
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            background: white;
+            border: 1px solid #ddd;
+        }
+
+        /* --- ด้านหน้า (ตัวจีน) --- */
+        .card-front {
+            background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+        }
+
+        .hanzi-lg {
+            font-size: 80px;
+            font-weight: bold;
+            color: #c0392b; /* สีแดงจีน */
+            margin-bottom: 10px;
+        }
+        
+        .tap-hint {
+            font-size: 14px;
+            color: #95a5a6;
+            margin-top: 40px;
+        }
+
+        /* --- ด้านหลัง (เฉลย) --- */
+        .card-back {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            transform: rotateY(180deg); /* หมุนรอไว้ด้านหลัง */
+            text-align: center;
+        }
+
+        .pinyin {
+            font-size: 32px;
+            color: #f1c40f; /* สีเหลืองทอง */
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .divider {
+            width: 50px;
+            height: 2px;
+            background-color: rgba(255,255,255,0.3);
+            margin: 15px 0;
+        }
+
+        .meaning {
+            font-size: 24px;
+            line-height: 1.5;
+            font-weight: bold;
+        }
+
+        .detail {
+            font-size: 16px;
+            color: #bdc3c7;
+            margin-top: 10px;
+        }
+
+        /* --- ปุ่มควบคุมด้านล่าง --- */
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        button {
+            background: #2c3e50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: 'Sarabun', sans-serif;
+            transition: transform 0.1s, background 0.2s;
+        }
+
+        button:active { transform: scale(0.95); }
+        button:hover { background: #34495e; }
+
+        .progress {
+            font-size: 16px;
+            color: #7f8c8d;
+            font-variant-numeric: tabular-nums;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        /* ปุ่มสุ่ม (Shuffle) */
+        .btn-shuffle {
+            background-color: #e67e22;
+        }
+        .btn-shuffle:hover { background-color: #8234c2; }
+
+    </style>
+</head>
+<body>
+
+    <h1>HSK 3 Flashcard</h1>
+
+    <div class="card-container">
+        <div class="card" id="flashcard" onclick="flipCard()">
+            <div class="card-face card-front">
+                <div class="hanzi-lg" id="front-hanzi">...</div>
+                <div class="tap-hint">(แตะเพื่อดูคำแปล)</div>
+            </div>
+
+            <div class="card-face card-back">
+                <div class="pinyin" id="back-pinyin">...</div>
+                <div class="divider"></div>
+                <div class="meaning" id="back-meaning">...</div>
+                <div class="detail" id="back-type">...</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button onclick="prevCard()">&#10094;</button>
+        <span class="progress" id="progress-text">1 / 600</span>
+        <button onclick="nextCard()">&#10095;</button>
+    </div>
+    
+    <div style="margin-top: 15px;">
+        <button class="btn-shuffle" onclick="shuffleCards()">🔀 สุ่มคำศัพท์</button>
+    </div>
+
+    <script>
+        // --- ข้อมูลคำศัพท์ HSK 3 (ตัวอย่าง 50 คำแรก) ---
+        // หมายเหตุ: เนื่องจาก 600 คำจะยาวมาก ผมจึงใส่ตัวอย่างที่ถูกต้องให้ดู
+        // คุณสามารถ Copy คำศัพท์เพิ่มใน Format เดียวกันนี้ต่อท้ายได้เลย
+        let hsk3_vocab = [
+            { hanzi: "阿姨", pinyin: "āyí", meaning: "น้า, ป้า", type: "คำนาม (เรียกผู้หญิงรุ่นแม่)" },
+            { hanzi: "啊", pinyin: "a", meaning: "อ้อ, อ๋อ, นะ", type: "คำอุทาน" },
+            { hanzi: "矮", pinyin: "ǎi", meaning: "เตี้ย", type: "คำคุณศัพท์" },
+            { hanzi: "爱好", pinyin: "àihào", meaning: "งานอดิเรก", type: "คำนาม / กริยา" },
+            { hanzi: "安静", pinyin: "ānjìng", meaning: "เงียบสงบ", type: "คำคุณศัพท์" },
+            { hanzi: "把", pinyin: "bǎ", meaning: "เอา..., ให้..., ทำให้...", type: "คำบุพบท / ลักษณนาม" },
+            { hanzi: "搬", pinyin: "bān", meaning: "ย้าย (ของ)", type: "คำกริยา" },
+            { hanzi: "班", pinyin: "bān", meaning: "ชั้นเรียน", type: "คำนาม" },
+            { hanzi: "办法", pinyin: "bànfǎ", meaning: "วิธี, หนทาง", type: "คำนาม" },
+            { hanzi: "办公室", pinyin: "bàngōngshì", meaning: "ห้องทำงาน, ออฟฟิศ", type: "คำนาม" },
+            { hanzi: "半", pinyin: "bàn", meaning: "ครึ่ง", type: "จำนวนนับ" },
+            { hanzi: "帮忙", pinyin: "bāngmáng", meaning: "ช่วยเหลือ", type: "คำกริยา" },
+            { hanzi: "包", pinyin: "bāo", meaning: "กระเป๋า / ห่อ", type: "คำนาม / คำกริยา" },
+            { hanzi: "饱", pinyin: "bǎo", meaning: "อิ่ม", type: "คำคุณศัพท์" },
+            { hanzi: "北方", pinyin: "běifāng", meaning: "ทิศเหนือ", type: "คำนาม" },
+            { hanzi: "被", pinyin: "bèi", meaning: "ถูก (กระทำ)", type: "คำบุพบท" },
+            { hanzi: "鼻子", pinyin: "bízi", meaning: "จมูก", type: "คำนาม" },
+            { hanzi: "比较", pinyin: "bǐjiào", meaning: "ค่อนข้าง, เปรียบเทียบ", type: "กริยาวิเศษณ์ / กริยา" },
+            { hanzi: "比赛", pinyin: "bǐsài", meaning: "การแข่งขัน", type: "คำนาม / กริยา" },
+            { hanzi: "笔记本", pinyin: "bǐjìběn", meaning: "สมุดจด / โน้ตบุ๊ก", type: "คำนาม" },
+            { hanzi: "必须", pinyin: "bìxū", meaning: "จำเป็นต้อง", type: "กริยาวิเศษณ์" },
+            { hanzi: "变化", pinyin: "biànhuà", meaning: "การเปลี่ยนแปลง", type: "คำนาม / กริยา" },
+            { hanzi: "别人", pinyin: "biérén", meaning: "คนอื่น", type: "คำสรรพนาม" },
+            { hanzi: "冰箱", pinyin: "bīngxiāng", meaning: "ตู้เย็น", type: "คำนาม" },
+            { hanzi: "不但…而且", pinyin: "búdàn…érqiě", meaning: "ไม่เพียงแต่... อีกทั้งยัง...", type: "คำสันธาน" },
+            { hanzi: "菜单", pinyin: "càidān", meaning: "เมนูอาหาร", type: "คำนาม" },
+            { hanzi: "参加", pinyin: "cānjiā", meaning: "เข้าร่วม", type: "คำกริยา" },
+            { hanzi: "草", pinyin: "cǎo", meaning: "หญ้า", type: "คำนาม" },
+            { hanzi: "层", pinyin: "céng", meaning: "ชั้น (ตึก)", type: "ลักษณนาม" },
+            { hanzi: "差", pinyin: "chà", meaning: "แย่, ขาดอีก", type: "คำคุณศัพท์ / กริยา" },
+            { hanzi: "超市", pinyin: "chāoshì", meaning: "ซูเปอร์มาร์เก็ต", type: "คำนาม" },
+            { hanzi: "衬衫", pinyin: "chènshān", meaning: "เสื้อเชิ้ต", type: "คำนาม" },
+            { hanzi: "城市", pinyin: "chéngshì", meaning: "เมือง", type: "คำนาม" },
+            { hanzi: "成绩", pinyin: "chéngjì", meaning: "คะแนน, ผลงาน", type: "คำนาม" },
+            { hanzi: "迟到", pinyin: "chídào", meaning: "มาสาย", type: "คำกริยา" },
+            { hanzi: "出现", pinyin: "chūxiàn", meaning: "ปรากฏตัว, เกิดขึ้น", type: "คำกริยา" },
+            { hanzi: "厨房", pinyin: "chúfáng", meaning: "ห้องครัว", type: "คำนาม" },
+            { hanzi: "除了", pinyin: "chúle", meaning: "นอกจาก...", type: "คำบุพบท" },
+            { hanzi: "春", pinyin: "chūn", meaning: "ฤดูใบไม้ผลิ", type: "คำนาม" },
+            { hanzi: "词语", pinyin: "cíyǔ", meaning: "คำศัพท์, วลี", type: "คำนาม" },
+            { hanzi: "聪明", pinyin: "cōngming", meaning: "ฉลาด", type: "คำคุณศัพท์" },
+            { hanzi: "打扫", pinyin: "dǎsǎo", meaning: "ทำความสะอาด", type: "คำกริยา" },
+            { hanzi: "打算", pinyin: "dǎsuàn", meaning: "วางแผน", type: "คำกริยา / คำนาม" },
+            { hanzi: "带", pinyin: "dài", meaning: "พก, พา, นำ", type: "คำกริยา" },
+            { hanzi: "担心", pinyin: "dānxīn", meaning: "เป็นห่วง, กังวล", type: "คำกริยา" },
+            { hanzi: "蛋糕", pinyin: "dàngāo", meaning: "ขนมเค้ก", type: "คำนาม" },
+            { hanzi: "当然", pinyin: "dāngrán", meaning: "แน่นอน", type: "กริยาวิเศษณ์" },
+            { hanzi: "灯", pinyin: "dēng", meaning: "ไฟ, ตะเกียง", type: "คำนาม" },
+            { hanzi: "地", pinyin: "de", meaning: "อย่าง... (ใช้ขยายกริยา)", type: "คำช่วย" },
+            { hanzi: "地方", pinyin: "dìfang", meaning: "สถานที่", type: "คำนาม" },
+            { hanzi: "地铁", pinyin: "dìtiě", meaning: "รถไฟใต้ดิน", type: "คำนาม" }
+        ];
+
+        let currentIndex = 0;
+        const cardEl = document.getElementById('flashcard');
+        const frontHanzi = document.getElementById('front-hanzi');
+        const backPinyin = document.getElementById('back-pinyin');
+        const backMeaning = document.getElementById('back-meaning');
+        const backType = document.getElementById('back-type');
+        const progressText = document.getElementById('progress-text');
+
+        // ฟังก์ชันเริ่มทำงาน
+        function init() {
+            renderCard();
+        }
+
+        // แสดงข้อมูลบนการ์ด
+        function renderCard() {
+            const word = hsk3_vocab[currentIndex];
+            
+            // อัปเดตข้อมูลด้านหน้า
+            frontHanzi.innerText = word.hanzi;
+            
+            // อัปเดตข้อมูลด้านหลัง
+            backPinyin.innerText = word.pinyin;
+            backMeaning.innerText = word.meaning;
+            backType.innerText = word.type ? `(${word.type})` : "";
+            
+            // อัปเดตเลขหน้า
+            progressText.innerText = `${currentIndex + 1} / ${hsk3_vocab.length}`;
+        }
+
+        // พลิกการ์ด (ทำงานเมื่อคลิกที่ตัวการ์ด)
+        function flipCard() {
+            cardEl.classList.toggle('is-flipped');
+        }
+
+        // ไปหน้าถัดไป
+        function nextCard() {
+            if (cardEl.classList.contains('is-flipped')) {
+                // ถ้าการ์ดหงายอยู่ ให้คว่ำลงก่อนเปลี่ยนคำ
+                cardEl.classList.remove('is-flipped');
+                setTimeout(() => {
+                    incrementIndex();
+                    renderCard();
+                }, 300); // รอ animation 300ms
+            } else {
+                incrementIndex();
+                renderCard();
+            }
+        }
+
+        function incrementIndex() {
+            if (currentIndex < hsk3_vocab.length - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0; // วนกลับไปคำแรก
+            }
+        }
+
+        // ย้อนกลับ
+        function prevCard() {
+             if (cardEl.classList.contains('is-flipped')) {
+                cardEl.classList.remove('is-flipped');
+                setTimeout(() => {
+                    decrementIndex();
+                    renderCard();
+                }, 300);
+            } else {
+                decrementIndex();
+                renderCard();
+            }
+        }
+
+        function decrementIndex() {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = hsk3_vocab.length - 1; // วนไปคำสุดท้าย
+            }
+        }
+
+        // ฟังก์ชันสุ่มคำศัพท์ (Shuffle)
+        function shuffleCards() {
+            // ใช้ Fisher-Yates Shuffle Algorithm
+            for (let i = hsk3_vocab.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [hsk3_vocab[i], hsk3_vocab[j]] = [hsk3_vocab[j], hsk3_vocab[i]];
+            }
+            currentIndex = 0; // รีเซ็ตไปที่ใบแรกของกองใหม่
+            
+            // ถ้าการ์ดหงายอยู่ ให้คว่ำลงก่อน
+            if (cardEl.classList.contains('is-flipped')) {
+                cardEl.classList.remove('is-flipped');
+                setTimeout(renderCard, 300);
+            } else {
+                renderCard();
+            }
+        }
+
+        // ควบคุมด้วยคีย์บอร์ด
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextCard();
+            if (e.key === 'ArrowLeft') prevCard();
+            if (e.key === ' ' || e.key === 'Enter') flipCard();
+        });
+
+        init();
+    </script>
+</body>
+</html>
