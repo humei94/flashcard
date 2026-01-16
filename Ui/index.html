@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSK 3 Flashcard (Chinese Theme)</title>
+    <title>HSK 3 Pro Flashcard (Stroke Order)</title>
     <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;700&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
+
     <style>
-        /* --- Chinese Theme CSS --- */
+        /* --- Styles (Chinese Theme + Audio + Strokes) --- */
         body {
             font-family: 'Sarabun', 'Noto Sans SC', sans-serif;
-            /* พื้นหลังสีครีมกระดาษสา พร้อมลายจุดจางๆ */
             background-color: #f3e9d2; 
             background-image: radial-gradient(#d6c6a8 2px, transparent 2px);
             background-size: 24px 24px;
@@ -22,24 +22,24 @@
             margin: 0;
             overflow: hidden;
             color: #4a4a4a;
+            user-select: none;
         }
 
         h1 {
-            color: #8b0000; /* แดงเข้ม */
+            color: #8b0000;
             font-family: 'Noto Sans SC', sans-serif;
             font-weight: bold;
-            font-size: 28px;
-            margin-bottom: 15px;
+            font-size: 24px;
+            margin-bottom: 10px;
             text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
             letter-spacing: 2px;
         }
 
-        /* --- Card Container (ขยายขนาด) --- */
         .card-container {
-            width: 420px;  /* กว้างขึ้น */
-            height: 600px; /* สูงขึ้น */
+            width: 420px;
+            height: 600px;
             perspective: 1200px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             position: relative;
         }
 
@@ -50,13 +50,12 @@
             transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
             transform-style: preserve-3d;
             cursor: pointer;
-            box-shadow: 0 15px 35px rgba(139, 0, 0, 0.2); /* เงาสีแดงจางๆ */
+            box-shadow: 0 15px 35px rgba(139, 0, 0, 0.2);
             border-radius: 20px;
         }
 
         .card.is-flipped { transform: rotateY(180deg); }
 
-        /* --- พื้นฐานหน้าการ์ด --- */
         .card-face {
             position: absolute;
             width: 100%;
@@ -67,212 +66,136 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 30px;
+            padding: 20px;
             box-sizing: border-box;
             background: #fff;
-            border: 8px double #8b0000; /* กรอบคู่สไตล์จีน */
+            border: 8px double #8b0000;
         }
 
-        /* --- ปุ่มดาว (Star) --- */
-        .star-btn {
+        /* --- Buttons --- */
+        .icon-btn {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 40px;
-            background: none;
-            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #8b0000;
+            background: rgba(255, 255, 255, 0.9);
+            color: #8b0000;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            z-index: 10;
-            color: #e0e0e0; 
-            transition: all 0.3s;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 20;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        .star-btn.active {
-            color: #ffd700; /* สีทอง */
-            transform: scale(1.2);
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
-        }
-        .star-btn:hover { transform: scale(1.1); }
+        .icon-btn:hover { background: #8b0000; color: #ffd700; transform: scale(1.1); }
+        .icon-btn:active { transform: scale(0.95); }
 
-        /* --- ด้านหน้า (ตัวจีน) --- */
+        .btn-audio { top: 20px; left: 20px; }
+        .btn-stroke { top: 20px; left: 75px; } /* ปุ่มพู่กันอยู่ถัดมา */
+        .btn-star { 
+            top: 20px; right: 20px; 
+            border: none; background: none; box-shadow: none; font-size: 40px; color: #e0e0e0;
+        }
+        .btn-star:hover { background: none; box-shadow: none; }
+        .btn-star.active { color: #ffd700; text-shadow: 0 0 10px rgba(255, 215, 0, 0.6); transform: scale(1.2); }
+
+        /* --- Front Content --- */
         .card-front {
-            background-color: #fffbf0; /* สีขาวนวล */
-            /* ลายน้ำจางๆ ตรงกลาง */
+            background-color: #fffbf0;
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d00000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
         .hanzi-lg {
-            font-family: 'Ma Shan Zheng', cursive, 'Noto Sans SC', serif; /* ฟอนต์พู่กัน */
-            font-size: 110px; /* ใหญ่สะใจ */
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 110px;
             color: #8b0000;
             margin-bottom: 20px;
             text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
-        }
-        .tap-hint {
-            font-size: 16px;
-            color: #a67c52;
-            margin-top: 50px;
-            border-top: 1px solid #d6c6a8;
-            padding-top: 10px;
-            width: 60%;
-            text-align: center;
+            transition: opacity 0.3s;
         }
 
-        /* --- ด้านหลัง (เฉลย) --- */
-        .card-back {
-            background: linear-gradient(145deg, #8b0000 0%, #600000 100%); /* แดงไล่เฉด */
-            color: #fff;
-            transform: rotateY(180deg);
-            align-items: flex-start;
-            text-align: left;
-            overflow-y: auto;
-            border-color: #d4af37; /* ขอบสีทอง */
+        /* Container สำหรับลำดับขีด */
+        #stroke-container {
+            display: none; /* ซ่อนไว้ก่อน */
+            flex-direction: row;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255,255,255,0.5);
+            padding: 10px;
+            border-radius: 10px;
         }
-        
-        /* Scrollbar สวยๆ */
+        .stroke-char {
+            border: 1px solid #d6c6a8;
+            background: white;
+        }
+
+        .tap-hint {
+            font-size: 16px; color: #a67c52; margin-top: 50px;
+            border-top: 1px solid #d6c6a8; padding-top: 10px; width: 60%; text-align: center;
+        }
+
+        /* --- Back Content --- */
+        .card-back {
+            background: linear-gradient(145deg, #8b0000 0%, #600000 100%);
+            color: #fff; transform: rotateY(180deg);
+            align-items: flex-start; text-align: left; overflow-y: auto; border-color: #d4af37;
+        }
         .card-back::-webkit-scrollbar { width: 6px; }
         .card-back::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.3); border-radius: 3px; }
 
-        .header-group {
-            width: 100%;
-            border-bottom: 2px solid rgba(255, 215, 0, 0.3); /* เส้นขีดทอง */
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-
-        .pinyin {
-            font-size: 32px;
-            color: #ffd700; /* สีทอง */
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-        .meaning {
-            font-size: 26px;
-            font-weight: bold;
-            margin-top: 8px;
-            color: #fff;
-        }
-        .type-tag {
-            display: inline-block;
-            background: rgba(255, 215, 0, 0.2);
-            border: 1px solid rgba(255, 215, 0, 0.5);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 14px;
-            margin-top: 8px;
-            color: #ffd700;
-        }
-
-        .section-title {
-            font-size: 14px;
-            color: #cca4a4;
-            margin-bottom: 8px;
-            margin-top: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-        }
-        .section-title::before {
-            content: '✦';
-            margin-right: 5px;
-            color: #ffd700;
-        }
-
-        .example-box {
-            background: rgba(255,255,255,0.1);
-            padding: 15px;
-            border-radius: 12px;
-            width: 100%;
-            margin-bottom: 10px;
-            border-left: 4px solid #ffd700; /* แถบข้างสีทอง */
-        }
+        .header-group { width: 100%; border-bottom: 2px solid rgba(255, 215, 0, 0.3); padding-bottom: 15px; margin-bottom: 20px; }
+        .pinyin { font-size: 32px; color: #ffd700; font-weight: 500; letter-spacing: 1px; }
+        .meaning { font-size: 26px; font-weight: bold; margin-top: 8px; color: #fff; }
+        .type-tag { display: inline-block; background: rgba(255, 215, 0, 0.2); border: 1px solid rgba(255, 215, 0, 0.5); padding: 4px 10px; border-radius: 6px; font-size: 14px; margin-top: 8px; color: #ffd700; }
+        .section-title { font-size: 14px; color: #cca4a4; margin-bottom: 8px; margin-top: 15px; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; }
+        .section-title::before { content: '✦'; margin-right: 5px; color: #ffd700; }
+        .example-box { background: rgba(255,255,255,0.1); padding: 15px; border-radius: 12px; width: 100%; margin-bottom: 10px; border-left: 4px solid #ffd700; }
         .ex-cn { font-size: 20px; color: #fff; margin-bottom: 6px; font-weight: 400; line-height: 1.5; }
         .ex-th { font-size: 16px; color: #ddd; font-style: italic; }
+        .note-box { font-size: 15px; color: #fff; line-height: 1.6; background: rgba(0, 0, 0, 0.2); padding: 10px 15px; border-radius: 10px; width: 100%; }
 
-        .note-box {
-            font-size: 15px;
-            color: #fff;
-            line-height: 1.6;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 10px 15px;
-            border-radius: 10px;
-            width: 100%;
-        }
-
-        /* --- Controls & Menu --- */
+        /* --- Controls --- */
         .controls { display: flex; align-items: center; gap: 20px; margin-top: 10px; }
-        
         .nav-btn {
-            background: #8b0000;
-            color: #ffd700;
-            border: 2px solid #8b0000;
-            padding: 12px 25px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 20px;
+            background: #8b0000; color: #ffd700; border: 2px solid #8b0000; padding: 12px 25px;
+            border-radius: 50px; cursor: pointer; transition: all 0.2s; font-size: 20px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
-        .nav-btn:hover {
-            background: #a50000;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-        }
-        .nav-btn:active { transform: translateY(0); }
-
+        .nav-btn:hover { background: #a50000; transform: translateY(-2px); }
         .progress {
-            font-weight: 600;
-            color: #8b0000;
-            font-size: 18px;
-            min-width: 90px;
-            text-align: center;
-            background: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            border: 1px solid #d6c6a8;
+            font-weight: 600; color: #8b0000; font-size: 18px; min-width: 90px; text-align: center;
+            background: white; padding: 5px 15px; border-radius: 20px; border: 1px solid #d6c6a8;
         }
 
         .menu-bar { margin-top: 25px; display: flex; gap: 12px; }
-        
         .mode-btn {
-            padding: 10px 20px;
-            border: 2px solid #a67c52;
-            background: white;
-            color: #5d4037;
-            border-radius: 10px;
-            cursor: pointer;
-            font-family: 'Sarabun', sans-serif;
-            font-weight: 600;
-            font-size: 15px;
-            transition: all 0.2s;
+            padding: 10px 20px; border: 2px solid #a67c52; background: white; color: #5d4037;
+            border-radius: 10px; cursor: pointer; font-family: 'Sarabun', sans-serif; font-weight: 600; font-size: 15px; transition: all 0.2s;
         }
         .mode-btn:hover { background: #fdf5e6; }
-        
-        .mode-btn.active {
-            background: #8b0000;
-            color: #ffd700;
-            border-color: #8b0000;
-            box-shadow: 0 4px 10px rgba(139, 0, 0, 0.3);
-        }
-        .mode-btn.shuffle-active {
-            background: #1e3a8a; /* น้ำเงินเข้มแบบลายคราม */
-            color: white;
-            border-color: #1e3a8a;
-        }
+        .mode-btn.active { background: #8b0000; color: #ffd700; border-color: #8b0000; }
+        .mode-btn.shuffle-active { background: #1e3a8a; color: white; border-color: #1e3a8a; }
 
     </style>
 </head>
 <body>
 
-    <h1 id="mode-title">HSK 3 : คำศัพท์ภาษาจีน</h1>
+    <h1 id="mode-title">HSK 3 Flashcards</h1>
 
     <div class="card-container">
-        <button class="star-btn" id="star-btn" onclick="toggleHard(event)">★</button>
+        <button class="icon-btn btn-audio" title="ฟังเสียง" onclick="playAudio(event)">🔊</button>
+        <button class="icon-btn btn-stroke" title="ลำดับขีด" onclick="playStroke(event)">🖌️</button>
+        <button class="icon-btn btn-star" id="star-btn" title="บันทึกคำยาก" onclick="toggleHard(event)">★</button>
 
         <div class="card" id="flashcard" onclick="flipCard()">
             <div class="card-face card-front">
-                <div class="hanzi-lg" id="front-hanzi">加载中...</div>
+                <div class="hanzi-lg" id="front-hanzi">...</div>
+                <div id="stroke-container"></div>
+                
                 <div class="tap-hint">(แตะเพื่อดูความหมาย)</div>
             </div>
 
@@ -282,13 +205,11 @@
                     <div class="meaning" id="back-meaning">...</div>
                     <span class="type-tag" id="back-type">...</span>
                 </div>
-
                 <div class="section-title">ตัวอย่างประโยค</div>
                 <div class="example-box">
                     <div class="ex-cn" id="back-ex-cn">...</div>
                     <div class="ex-th" id="back-ex-th">...</div>
                 </div>
-
                 <div id="note-section" style="display:none; width: 100%;">
                     <div class="section-title">ข้อสังเกต / การใช้</div>
                     <div class="note-box" id="back-note">...</div>
@@ -310,16 +231,18 @@
     </div>
 
     <script>
-        // --- JavaScript Logic (คงเดิม) ---
+        // --- Variables ---
         let allWords = [];
         let currentDeck = [];
         let currentIndex = 0;
         let hardList = [];
         let currentMode = 'all';
+        let writers = []; // เก็บตัวเขียน HanziWriter
 
         const els = {
             card: document.getElementById('flashcard'),
             hanzi: document.getElementById('front-hanzi'),
+            strokeContainer: document.getElementById('stroke-container'),
             pinyin: document.getElementById('back-pinyin'),
             meaning: document.getElementById('back-meaning'),
             type: document.getElementById('back-type'),
@@ -333,6 +256,7 @@
             modeTitle: document.getElementById('mode-title')
         };
 
+        // --- Init ---
         async function loadData() {
             try {
                 const res = await fetch('words.json');
@@ -347,6 +271,7 @@
             }
         }
 
+        // --- Logic ---
         function setMode(mode) {
             currentMode = mode;
             currentIndex = 0;
@@ -355,9 +280,8 @@
             if (mode === 'all') {
                 currentDeck = [...allWords];
                 document.getElementById('btn-all').classList.add('active');
-                els.modeTitle.innerText = "HSK 3 : ทั้งหมด (เรียงตามลำดับ)";
-            } 
-            else if (mode === 'shuffle') {
+                els.modeTitle.innerText = "HSK 3 : ทั้งหมด";
+            } else if (mode === 'shuffle') {
                 currentDeck = [...allWords];
                 for (let i = currentDeck.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
@@ -365,22 +289,23 @@
                 }
                 document.getElementById('btn-shuffle').classList.add('shuffle-active');
                 els.modeTitle.innerText = "HSK 3 : สุ่มคำศัพท์";
-            } 
-            else if (mode === 'hard') {
+            } else if (mode === 'hard') {
                 currentDeck = allWords.filter(word => hardList.includes(word.hanzi));
                 document.getElementById('btn-hard').classList.add('active');
-                els.modeTitle.innerText = "HSK 3 : ทบทวนคำที่จำไม่ได้";
-                if (currentDeck.length === 0) {
-                    alert("ยังไม่มีคำที่บันทึกไว้");
-                    setMode('all');
-                    return;
-                }
+                els.modeTitle.innerText = "HSK 3 : คำที่จำไม่ได้";
+                if (currentDeck.length === 0) { alert("ไม่มีรายการคำที่จำไม่ได้"); setMode('all'); return; }
             }
             renderCard();
         }
 
         function renderCard() {
             if (!currentDeck.length) return;
+            
+            // Reset Stroke View
+            els.hanzi.style.display = 'block';
+            els.strokeContainer.style.display = 'none';
+            els.strokeContainer.innerHTML = '';
+            
             const item = currentDeck[currentIndex];
             els.hanzi.innerText = item.hanzi;
             els.pinyin.innerText = item.pinyin;
@@ -392,24 +317,89 @@
             if (item.note) {
                 els.noteSection.style.display = "block";
                 els.note.innerHTML = item.note;
-            } else {
-                els.noteSection.style.display = "none";
-            }
+            } else { els.noteSection.style.display = "none"; }
 
             els.progress.innerText = `${currentIndex + 1} / ${currentDeck.length}`;
+            
+            if (hardList.includes(item.hanzi)) els.starBtn.classList.add('active');
+            else els.starBtn.classList.remove('active');
+        }
 
-            if (hardList.includes(item.hanzi)) {
-                els.starBtn.classList.add('active');
-            } else {
-                els.starBtn.classList.remove('active');
+        // --- Stroke Order Logic (หัวใจสำคัญ) ---
+        function playStroke(e) {
+            e.stopPropagation();
+            
+            // สลับโหมด: ถ้าแสดง Animation อยู่ ให้กลับไปแสดง Text ปกติ
+            if (els.strokeContainer.style.display === 'flex') {
+                els.strokeContainer.style.display = 'none';
+                els.hanzi.style.display = 'block';
+                return;
+            }
+
+            // เตรียมแสดง Animation
+            const text = currentDeck[currentIndex].hanzi;
+            els.hanzi.style.display = 'none';
+            els.strokeContainer.style.display = 'flex';
+            els.strokeContainer.innerHTML = ''; // เคลียร์ของเก่า
+            writers = []; // รีเซ็ต array
+
+            // สร้าง Writer สำหรับแต่ละตัวอักษร
+            for (let i = 0; i < text.length; i++) {
+                const charDiv = document.createElement('div');
+                charDiv.classList.add('stroke-char');
+                // กำหนด ID ให้ไม่ซ้ำกัน
+                const uniqueId = `char-${Date.now()}-${i}`;
+                charDiv.id = uniqueId;
+                els.strokeContainer.appendChild(charDiv);
+
+                // คำนวณขนาด (ถ้าคำยาว ให้เล็กลงหน่อย)
+                let size = 120;
+                if (text.length > 3) size = 80;
+
+                const writer = HanziWriter.create(uniqueId, text[i], {
+                    width: size,
+                    height: size,
+                    padding: 5,
+                    strokeColor: '#8b0000', // สีเส้น
+                    outlineColor: '#ddd',   // สีร่าง
+                    drawingWidth: 4,        // ความหนาเส้น
+                    showOutline: true
+                });
+                writers.push(writer);
+            }
+
+            // เริ่ม Animation ทีละตัว (Sequential Animation)
+            animateSequence(0);
+        }
+
+        function animateSequence(index) {
+            if (index < writers.length) {
+                writers[index].animateCharacter({
+                    onComplete: function() {
+                        // เมื่อตัวแรกเสร็จ ไปตัวถัดไป
+                        setTimeout(() => animateSequence(index + 1), 200);
+                    }
+                });
             }
         }
 
+        // --- Audio Logic ---
+        function playAudio(e) {
+            if(e) e.stopPropagation();
+            if (!currentDeck.length) return;
+            const text = currentDeck[currentIndex].hanzi;
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'zh-CN';
+                utterance.rate = 0.8;
+                window.speechSynthesis.speak(utterance);
+            } else { alert("Browser ไม่รองรับเสียง"); }
+        }
+
+        // --- Basic Controls ---
         function toggleHard(e) {
             e.stopPropagation();
-            const currentWord = currentDeck[currentIndex];
-            const wordKey = currentWord.hanzi;
-
+            const wordKey = currentDeck[currentIndex].hanzi;
             if (hardList.includes(wordKey)) {
                 hardList = hardList.filter(h => h !== wordKey);
                 els.starBtn.classList.remove('active');
@@ -421,26 +411,21 @@
             updateHardCount();
         }
 
-        function updateHardCount() {
-            els.hardCount.innerText = hardList.length;
-        }
-
+        function updateHardCount() { els.hardCount.innerText = hardList.length; }
         function flipCard() { els.card.classList.toggle('is-flipped'); }
-
+        
         function nextCard() {
             if (els.card.classList.contains('is-flipped')) {
                 els.card.classList.remove('is-flipped');
                 setTimeout(() => changeIndex(1), 300);
             } else { changeIndex(1); }
         }
-
         function prevCard() {
             if (els.card.classList.contains('is-flipped')) {
                 els.card.classList.remove('is-flipped');
                 setTimeout(() => changeIndex(-1), 300);
             } else { changeIndex(-1); }
         }
-
         function changeIndex(dir) {
             currentIndex += dir;
             if (currentIndex >= currentDeck.length) currentIndex = 0;
@@ -451,7 +436,8 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === "ArrowRight") nextCard();
             if (e.key === "ArrowLeft") prevCard();
-            if (e.key === " " || e.key === "Enter") flipCard();
+            if (e.key === "Enter") flipCard();
+            if (e.key === " ") { e.preventDefault(); playAudio(); }
         });
 
         loadData();
