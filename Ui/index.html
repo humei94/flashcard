@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSK 3 Ultimate Learning (Hanzi Back)</title>
+    <title>HSK 3 Ultimate Learning (Grammar Added)</title>
     <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;700&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
 
@@ -79,7 +79,7 @@
         /* --- Front --- */
         .card-front {
             background-color: #fffbf0;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d00000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2v4h4V4h-4zM6 34v-4H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d00000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2v4h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
         
         .hanzi-lg { 
@@ -88,12 +88,7 @@
             text-shadow: 3px 3px 0px rgba(0,0,0,0.1); 
             transition: font-family 0.3s;
         }
-        
-        /* Font Toggle Classes */
-        .hanzi-lg.normal-font, .hanzi-sm.normal-font {
-            font-family: 'Noto Sans SC', sans-serif !important;
-            font-weight: bold;
-        }
+        .hanzi-lg.normal-font, .hanzi-sm.normal-font { font-family: 'Noto Sans SC', sans-serif !important; font-weight: bold; }
 
         #stroke-container { 
             display: none; flex-direction: row; gap: 10px; justify-content: center; align-items: center; 
@@ -107,28 +102,32 @@
         .card-back::-webkit-scrollbar { width: 8px; }
         .card-back::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.3); border-radius: 4px; }
         
-        /* Hanzi Small (ด้านหลัง) */
-        .hanzi-sm {
-            font-family: 'Ma Shan Zheng', cursive;
-            font-size: 70px; /* ขนาดกลางๆ */
-            color: #fff; /* สีขาว ตัดกับพื้นหลังแดง */
-            margin-bottom: 10px;
-            width: 100%;
-            text-align: left;
-            line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
+        .hanzi-sm { font-family: 'Ma Shan Zheng', cursive; font-size: 70px; color: #fff; margin-bottom: 10px; width: 100%; text-align: left; line-height: 1.2; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
 
         .header-group { width: 100%; border-bottom: 2px solid rgba(255, 215, 0, 0.3); padding-bottom: 15px; margin-bottom: 25px; }
         .pinyin { font-size: 36px; color: #ffd700; font-weight: 500; letter-spacing: 1px; }
         .meaning { font-size: 30px; font-weight: bold; margin-top: 10px; color: #fff; }
         .type-tag { display: inline-block; background: rgba(255, 215, 0, 0.2); border: 1px solid rgba(255, 215, 0, 0.5); padding: 5px 12px; border-radius: 6px; font-size: 16px; margin-top: 10px; color: #ffd700; }
+        
+        /* Section Titles */
         .section-title { font-size: 16px; color: #cca4a4; margin-bottom: 10px; margin-top: 20px; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; }
         .section-title::before { content: '✦'; margin-right: 5px; color: #ffd700; }
+        .section-title.grammar::before { content: '🧩'; color: #3498db; } /* ไอคอนใหม่สำหรับ Grammar */
+
+        /* Content Boxes */
         .example-box { background: rgba(255,255,255,0.1); padding: 18px; border-radius: 12px; width: 100%; margin-bottom: 10px; border-left: 5px solid #ffd700; }
         .ex-cn { font-size: 24px; color: #fff; margin-bottom: 8px; font-weight: 400; line-height: 1.5; }
         .ex-th { font-size: 18px; color: #ddd; font-style: italic; }
-        .note-box { font-size: 16px; color: #fff; line-height: 1.6; background: rgba(0, 0, 0, 0.2); padding: 12px 18px; border-radius: 10px; width: 100%; }
+        
+        .note-box { font-size: 16px; color: #fff; line-height: 1.6; background: rgba(0, 0, 0, 0.2); padding: 12px 18px; border-radius: 10px; width: 100%; border-left: 5px solid #e67e22; }
+
+        /* Grammar Box (New) */
+        .grammar-box {
+            background: rgba(52, 152, 219, 0.15); /* สีฟ้าจางๆ */
+            padding: 15px; border-radius: 12px; width: 100%; margin-bottom: 10px;
+            border-left: 5px solid #3498db; /* ขอบสีฟ้า */
+        }
+        .grammar-text { font-size: 18px; color: #ecf0f1; line-height: 1.5; font-family: 'Sarabun', sans-serif; }
 
         /* Controls */
         .controls-area { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 20px; }
@@ -223,11 +222,20 @@
                             <div class="meaning" id="back-meaning">...</div>
                             <span class="type-tag" id="back-type">...</span>
                         </div>
+                        
                         <div class="section-title">ตัวอย่างประโยค</div>
                         <div class="example-box">
                             <div class="ex-cn" id="back-ex-cn">...</div>
                             <div class="ex-th" id="back-ex-th">...</div>
                         </div>
+
+                        <div id="grammar-section" style="display:none; width: 100%;">
+                            <div class="section-title grammar">โครงสร้างประโยค</div>
+                            <div class="grammar-box">
+                                <div class="grammar-text" id="back-grammar">...</div>
+                            </div>
+                        </div>
+
                         <div id="note-section" style="display:none; width: 100%;">
                             <div class="section-title">ข้อสังเกต / การใช้</div>
                             <div class="note-box" id="back-note">...</div>
@@ -315,13 +323,15 @@
         const els = {
             card: document.getElementById('flashcard'),
             hanzi: document.getElementById('front-hanzi'),
-            backHanzi: document.getElementById('back-hanzi'), // เพิ่มตัวนี้
+            backHanzi: document.getElementById('back-hanzi'),
             strokeContainer: document.getElementById('stroke-container'),
             pinyin: document.getElementById('back-pinyin'),
             meaning: document.getElementById('back-meaning'),
             type: document.getElementById('back-type'),
             exCn: document.getElementById('back-ex-cn'),
             exTh: document.getElementById('back-ex-th'),
+            grammarSection: document.getElementById('grammar-section'), // New
+            grammarText: document.getElementById('back-grammar'), // New
             note: document.getElementById('back-note'),
             noteSection: document.getElementById('note-section'),
             progress: document.getElementById('progress-text'),
@@ -345,9 +355,23 @@
         // --- Init ---
         async function loadData() {
             try {
+                // *** ตัวอย่างข้อมูลที่มี structure (สำหรับการทดสอบ) ***
+                // ในการใช้งานจริง ให้ fetch จาก words.json ที่คุณแก้ไขแล้ว
                 const res = await fetch('words.json');
                 allWords = await res.json();
                 
+                // --- TEST DATA INJECTION (Optional: เอาออกได้เมื่อไฟล์ json จริงมีข้อมูลครบ) ---
+                // ตัวอย่าง: ถ้าคำว่า "把" ยังไม่มี structure ในไฟล์ json โค้ดนี้จะลองใส่ให้ดู
+                const testWord = allWords.find(w => w.hanzi === "把");
+                if(testWord && !testWord.structure) {
+                    testWord.structure = "<b>S + 把 + O + V + Result</b><br>ประธานจัดการกับกรรมอย่างไร";
+                }
+                const testWord2 = allWords.find(w => w.hanzi === "被");
+                if(testWord2 && !testWord2.structure) {
+                    testWord2.structure = "<b>S + 被 + Doer + V</b><br>ประธานถูกกระทำโดยใคร";
+                }
+                // -----------------------------------------------------------------------
+
                 if(localStorage.getItem('hsk3_hard')) hardList = JSON.parse(localStorage.getItem('hsk3_hard'));
                 if(localStorage.getItem('hsk3_srs')) srsData = JSON.parse(localStorage.getItem('hsk3_srs'));
                 if(localStorage.getItem('hsk3_stats')) studyStats = JSON.parse(localStorage.getItem('hsk3_stats'));
@@ -428,7 +452,7 @@
             
             const item = currentDeck[currentIndex];
             els.hanzi.innerText = item.hanzi;
-            els.backHanzi.innerText = item.hanzi; // ใส่ตัวจีนด้านหลังด้วย
+            els.backHanzi.innerText = item.hanzi;
             
             // Toggle Font
             if(isNormalFont) {
@@ -444,6 +468,15 @@
             els.type.innerText = item.type || "";
             els.exCn.innerText = item.example_cn || "-";
             els.exTh.innerText = item.example_th || "";
+            
+            // Grammar Logic
+            if (item.structure) { // ใช้ชื่อ field ว่า structure
+                els.grammarSection.style.display = 'block';
+                els.grammarText.innerHTML = item.structure;
+            } else {
+                els.grammarSection.style.display = 'none';
+            }
+
             if (item.note) { els.noteSection.style.display = 'block'; els.note.innerHTML = item.note; } 
             else els.noteSection.style.display = 'none';
 
@@ -657,7 +690,43 @@
                 case "n": toggleFont(e); break;
             }
         });
+// --- Updated Init Function ---
+        async function loadData() {
+            try {
+                // 1. โหลดข้อมูล
+                const res = await fetch('words.json');
+                const rawWords = await res.json();
+                
+                // 2. ระบบลบคำซ้ำ (Deduplicate)
+                const uniqueMap = new Map();
+                rawWords.forEach(item => {
+                    // ใช้ตัวอักษรจีน (hanzi) เป็น Key ในการเช็คซ้ำ
+                    // ถ้ามีซ้ำ ข้อมูลตัวหลังสุดจะทับตัวเก่า (ซึ่งมักจะเป็นตัวที่อัปเดตกว่า)
+                    if (item.hanzi) {
+                        uniqueMap.set(item.hanzi, item);
+                    }
+                });
+                
+                // แปลงกลับเป็น Array
+                allWords = Array.from(uniqueMap.values());
+                
+                console.log(`Loaded ${rawWords.length} words. Unique words: ${allWords.length}`);
 
+                // 3. โหลด User Data (Hard/SRS/Stats)
+                if(localStorage.getItem('hsk3_hard')) hardList = JSON.parse(localStorage.getItem('hsk3_hard'));
+                if(localStorage.getItem('hsk3_srs')) srsData = JSON.parse(localStorage.getItem('hsk3_srs'));
+                if(localStorage.getItem('hsk3_stats')) studyStats = JSON.parse(localStorage.getItem('hsk3_stats'));
+
+                checkStreak();
+                setMode('all');
+                updateStatsUI();
+            } catch (err) { 
+                console.error(err); 
+                els.hanzi.innerText = "Error (Check JSON format)"; 
+                els.hanzi.style.fontSize = "30px";
+            }
+        }
+        
         loadData();
     </script>
 </body>

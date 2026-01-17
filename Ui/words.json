@@ -5408,5 +5408,462 @@
     "example_cn": "正在吃饭",
     "example_th": "Zhèngzài chīfàn (กำลังกินข้าวอยู่)",
     "note": "In process of"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    "hanzi": "把",
+    "pinyin": "bǎ",
+    "meaning": "เอา..., ให้... (จัดการกับกรรม)",
+    "type": "คำบุพบท",
+    "structure": "<b>S + 把 + O + V + Result</b><br>ประธานจัดการกับกรรมให้เกิดผลลัพธ์",
+    "example_cn": "请把门打开。",
+    "example_th": "Qǐng bǎ mén dǎkāi. (กรุณาเปิดประตู)",
+    "note": "ใช้เมื่อกริยาส่งผลกระทบต่อสิ่งของให้ย้ายที่หรือเปลี่ยนแปลง"
+  },
+  {
+    "hanzi": "被",
+    "pinyin": "bèi",
+    "meaning": "ถูก (กระทำ)",
+    "type": "คำบุพบท",
+    "structure": "<b>S (ผู้ถูกทำ) + 被 + O (ผู้ทำ) + V</b>",
+    "example_cn": "蛋糕被弟弟吃了。",
+    "example_th": "Dàngāo bèi dìdi chī le. (เค้กถูกน้องชายกินไปแล้ว)",
+    "note": "ใช้ในประโยค Passive Voice"
+  },
+  {
+    "hanzi": "比",
+    "pinyin": "bǐ",
+    "meaning": "กว่า (เปรียบเทียบ)",
+    "type": "คำบุพบท",
+    "structure": "<b>A + 比 + B + Adj</b><br>A ...กว่า B",
+    "example_cn": "我比弟弟高。",
+    "example_th": "Wǒ bǐ dìdi gāo. (ฉันสูงกว่าน้องชาย)",
+    "note": "ปฏิเสธใช้: A 没有 B + Adj (A ไม่...เท่า B)"
+  },
+  {
+    "hanzi": "跟",
+    "pinyin": "gēn",
+    "meaning": "กับ / เหมือนกับ",
+    "type": "คำบุพบท",
+    "structure": "<b>A + 跟 + B + (不)一样</b><br>A เหมือน/ไม่เหมือน กับ B",
+    "example_cn": "这本书跟那本一样。",
+    "example_th": "Zhè běn shū gēn nà běn yíyàng. (หนังสือเล่มนี้เหมือนกับเล่มนั้น)",
+    "note": "ถ้าใช้ทำกริยาร่วมกัน: A 跟 B + 一起 + Verb"
+  },
+  {
+    "hanzi": "虽然",
+    "pinyin": "suīrán",
+    "meaning": "ถึงแม้ว่า...",
+    "type": "คำสันธาน",
+    "structure": "<b>虽然 ...，但是 ...</b><br>ถึงแม้ว่า... แต่ว่า...",
+    "example_cn": "虽然外面很冷，但是房间里很热。",
+    "example_th": "Suīrán wàimiàn hěn lěng, dànshì fángjiān lǐ hěn rè. (ถึงข้างนอกจะหนาว แต่ในห้องร้อนมาก)",
+    "note": "เชื่อมประโยคขัดแย้ง"
+  },
+  {
+    "hanzi": "不但",
+    "pinyin": "búdàn",
+    "meaning": "ไม่เพียงแต่...",
+    "type": "คำสันธาน",
+    "structure": "<b>不但 ...，而且 ...</b><br>ไม่เพียงแต่... อีกทั้งยัง...",
+    "example_cn": "他不但是我的老师，而且是我的朋友。",
+    "example_th": "Tā búdàn shì wǒ de lǎoshī, érqiě shì wǒ de péngyou. (เขาไม่เพียงเป็นครู ยังเป็นเพื่อนฉันด้วย)",
+    "note": "เชื่อมประโยคสนับสนุนกัน"
+  },
+  {
+    "hanzi": "只要",
+    "pinyin": "zhǐyào",
+    "meaning": "ขอเพียงแค่...",
+    "type": "คำสันธาน",
+    "structure": "<b>只要 + (เงื่อนไข)，就 + (ผลลัพธ์)</b>",
+    "example_cn": "只要你努力，就能学好。",
+    "example_th": "Zhǐyào nǐ nǔlì, jiù néng xuéhǎo. (ขอแค่คุณขยัน ก็จะเรียนได้ดี)",
+    "note": "แสดงเงื่อนไขที่จำเป็น"
+  },
+  {
+    "hanzi": "只有",
+    "pinyin": "zhǐyǒu",
+    "meaning": "มีเพียงแค่...เท่านั้น",
+    "type": "คำสันธาน",
+    "structure": "<b>只有 + (เงื่อนไข)，才 + (ผลลัพธ์)</b>",
+    "example_cn": "只有多听多说，才能学好汉语。",
+    "example_th": "Zhǐyǒu duō tīng duō shuō, cái néng xuéhǎo Hànyǔ. (มีแต่ต้องฟังเยอะพูดเยอะเท่านั้น ถึงจะเรียนจีนได้ดี)",
+    "note": "เน้นเงื่อนไขเดียวเท่านั้นที่จะทำให้เกิดผล"
+  },
+  {
+    "hanzi": "一边",
+    "pinyin": "yìbiān",
+    "meaning": "ไปพลาง...ไปพลาง",
+    "type": "กริยาวิเศษณ์",
+    "structure": "<b>一边 + V1，一边 + V2</b><br>ทำ V1 และ V2 พร้อมกัน",
+    "example_cn": "不要一边吃饭一边看电视。",
+    "example_th": "Búyào yìbiān chīfàn yìbiān kàn diànshì. (อย่ากินข้าวไปดูทีวีไป)",
+    "note": "ใช้กับกริยาที่ทำพร้อมกันได้"
+  },
+  {
+    "hanzi": "越来越",
+    "pinyin": "yuèláiyuè",
+    "meaning": "นับวันยิ่ง...",
+    "type": "กริยาวิเศษณ์",
+    "structure": "<b>越来越 + Adj / Mental Verb</b>",
+    "example_cn": "天气越来越冷了。",
+    "example_th": "Tiānqì yuèláiyuè lěng le. (อากาศนับวันยิ่งหนาวขึ้น)",
+    "note": "ห้ามใส่ 很 หน้า Adj อีก (เพราะ 越来越 บอกระดับแล้ว)"
+  },
+  {
+    "hanzi": "或者",
+    "pinyin": "huòzhě",
+    "meaning": "หรือ (บอกเล่า)",
+    "type": "คำสันธาน",
+    "structure": "<b>Option A + 或者 + Option B</b>",
+    "example_cn": "你可以喝茶或者咖啡。",
+    "example_th": "Nǐ kěyǐ hē chá huòzhě kāfēi. (คุณดื่มชาหรือกาแฟก็ได้)",
+    "note": "ใช้ในประโยคบอกเล่าเท่านั้น (ถ้าถามใช้ 还是)"
+  },
+  {
+    "hanzi": "还是",
+    "pinyin": "háishì",
+    "meaning": "หรือ (คำถาม)",
+    "type": "คำสันธาน",
+    "structure": "<b>Option A + 还是 + Option B ?</b>",
+    "example_cn": "你想喝茶还是咖啡？",
+    "example_th": "Nǐ xiǎng hē chá háishì kāfēi? (คุณอยากดื่มชาหรือกาแฟ?)",
+    "note": "ใช้ในประโยคคำถาม หรือประโยคที่แสดงความไม่แน่ใจ"
+  },
+  {
+    "hanzi": "先",
+    "pinyin": "xiān",
+    "meaning": "ก่อน",
+    "type": "กริยาวิเศษณ์",
+    "structure": "<b>先 + V1，然后 + V2</b><br>ทำ V1 ก่อน แล้วค่อยทำ V2",
+    "example_cn": "先洗手，然后吃饭。",
+    "example_th": "Xiān xǐshǒu, ránhòu chīfàn. (ล้างมือก่อน แล้วค่อยกินข้าว)",
+    "note": "ใช้ลำดับเหตุการณ์"
+  },
+  {
+    "hanzi": "除了",
+    "pinyin": "chúle",
+    "meaning": "นอกจาก...",
+    "type": "คำบุพบท",
+    "structure": "<b>除了 + A (以外)，都 + B</b><br>นอกจาก A แล้ว ที่เหลือเป็น B หมด",
+    "example_cn": "除了我不去，大家都去。",
+    "example_th": "Chúle wǒ bú qù, dàjiā dōu qù. (นอกจากฉันที่ไม่ไป ทุกคนไปกันหมด)",
+    "note": "ถ้าใช้คู่กับ 还/也 จะแปลว่า นอกจาก A แล้ว ยังมี B ด้วย"
+  },
+  {
+    "hanzi": "得",
+    "pinyin": "de",
+    "meaning": "ได้... (บอกระดับ)",
+    "type": "คำช่วย",
+    "structure": "<b>Verb + 得 + Adj</b>",
+    "example_cn": "他跑得很快。",
+    "example_th": "Tā pǎo de hěn kuài. (เขาวิ่งได้เร็วมาก)",
+    "note": "ใช้ขยายกริยา เพื่อบอกผลลัพธ์หรือสภาพ"
+  },
+  {
+    "hanzi": "地",
+    "pinyin": "de",
+    "meaning": "อย่าง... (ขยายกริยา)",
+    "type": "คำช่วย",
+    "structure": "<b>Adj + 地 + Verb</b>",
+    "example_cn": "他高兴地笑了。",
+    "example_th": "Tā gāoxìng de xiào le. (เขาหัวเราะอย่างดีใจ)",
+    "note": "ใช้เปลี่ยน Adj ให้เป็น Adverb ขยายกริยาที่ตามมา"
+  },
+  {
+    "hanzi": "正在",
+    "pinyin": "zhèngzài",
+    "meaning": "กำลัง...อยู่",
+    "type": "กริยาวิเศษณ์",
+    "structure": "<b>正在 + Verb + (呢)</b>",
+    "example_cn": "我们正在开会呢。",
+    "example_th": "Wǒmen zhèngzài kāihuì ne. (พวกเรากำลังประชุมกันอยู่)",
+    "note": "เน้นการกระทำที่ดำเนินอยู่ ณ ขณะนั้น"
+  },
+  {
+    "hanzi": "又",
+    "pinyin": "yòu",
+    "meaning": "อีกแล้ว (อดีต)",
+    "type": "กริยาวิเศษณ์",
+    "structure": "<b>又 + Verb + 了</b>",
+    "example_cn": "昨天来了，今天又来了。",
+    "example_th": "Zuótiān lái le, jīntiān yòu lái le. (เมื่อวานมาแล้ว วันนี้มาอีกแล้ว)",
+    "note": "ใช้กับเรื่องที่เกิดขึ้นซ้ำในอดีต"
+  },
+  {
+    "hanzi": "再",
+    "pinyin": "zài",
+    "meaning": "อีก (อนาคต)",
+    "type": "กริยาวิเศษณ์",
+    "structure": "<b>再 + Verb</b>",
+    "example_cn": "欢迎再来。",
+    "example_th": "Huānyíng zài lái. (ยินดีต้อนรับมาใหม่อีกครั้ง)",
+    "note": "ใช้กับเรื่องที่จะเกิดขึ้นซ้ำในอนาคต"
+  },
+{
+    "hanzi": "了",
+    "pinyin": "le",
+    "meaning": "แล้ว / ...ไปแล้ว",
+    "type": "คำช่วย",
+    "structure": "<b>Verb + 了</b> (เสร็จสิ้น)<br><b>ประโยค + 了</b> (เปลี่ยนสถานะ)",
+    "example_cn": "我不吃饭了。",
+    "example_th": "Wǒ bù chīfàn le. (ฉันไม่กินข้าวแล้ว - เปลี่ยนใจ/อิ่มแล้ว)",
+    "note": "บอกการเปลี่ยนแปลง (Change of state) หรือการกระทำที่จบลง"
+  },
+  {
+    "hanzi": "着",
+    "pinyin": "zhe",
+    "meaning": "อยู่, กำลัง...ไว้",
+    "type": "คำช่วย",
+    "structure": "<b>Verb + 着</b>",
+    "example_cn": "门开着。",
+    "example_th": "Mén kāi zhe. (ประตูเปิดอยู่)",
+    "note": "แสดงสภาพที่ดำรงอยู่ต่อเนื่อง (Continuous State)"
+  },
+  {
+    "hanzi": "过",
+    "pinyin": "guò",
+    "meaning": "เคย",
+    "type": "คำช่วย",
+    "structure": "<b>Verb + 过</b>",
+    "example_cn": "我去过中国。",
+    "example_th": "Wǒ qù guò Zhōngguó. (ฉันเคยไปประเทศจีน)",
+    "note": "บอกประสบการณ์ในอดีต"
+  },
+  {
+    "hanzi": "就",
+    "pinyin": "jiù",
+    "meaning": "ก็... (เร็ว/ราบรื่น)",
+    "type": "กริยาวิเศษณ์",
+    "structure": "<b>(เวลา/เงื่อนไข) + 就 + Verb</b>",
+    "example_cn": "他早上五点就起床了。",
+    "example_th": "Tā zǎoshang wǔ diǎn jiù qǐchuáng le. (เขาตื่นตั้งแต่ตี 5 - ตื่นเร็ว)",
+    "note": "ใช้เน้นว่าเหตุการณ์เกิดขึ้นเร็ว หรือเป็นผลลัพธ์ที่ตามมาทันที"
+  },
+  {
+    "hanzi": "才",
+    "pinyin": "cái",
+    "meaning": "เพิ่งจะ... / ถึงจะ...",
+    "type": "กริยาวิเศษณ์",
+    "structure": "<b>(เวลา/เงื่อนไข) + 才 + Verb</b>",
+    "example_cn": "你怎么现在才来？",
+    "example_th": "Nǐ zěnme xiànzài cái lái? (ทำไมตอนนี้เธอเพิ่งจะมา - มาช้า)",
+    "note": "ใช้เน้นว่าเหตุการณ์เกิดขึ้นช้ากว่าที่คาด หรือยากลำบากกว่าจะเกิด"
+  },
+  {
+    "hanzi": "对",
+    "pinyin": "duì",
+    "meaning": "ต่อ..., กับ...",
+    "type": "คำบุพบท",
+    "structure": "<b>A + 对 + B + ...</b>",
+    "example_cn": "他对我很热情。",
+    "example_th": "Tā duì wǒ hěn rèqíng. (เขาปฏิบัติต่อฉันอย่างอบอุ่น)",
+    "note": "ใช้ระบุเป้าหมายของการกระทำ หรือความรู้สึก (เช่น สนใจ, ดีต่อ...)"
+  },
+  {
+    "hanzi": "给",
+    "pinyin": "gěi",
+    "meaning": "ให้ / แก่ / แด่",
+    "type": "คำบุพบท",
+    "structure": "<b>A + 给 + B + (Verb/Object)</b>",
+    "example_cn": "他给我买了一本书。",
+    "example_th": "Tā gěi wǒ mǎi le yì běn shū. (เขาซื้อหนังสือให้ฉันหนึ่งเล่ม)",
+    "note": "ระบุผู้รับผลประโยชน์"
+  },
+  {
+    "hanzi": "向",
+    "pinyin": "xiàng",
+    "meaning": "ไปยัง..., ทาง...",
+    "type": "คำบุพบท",
+    "structure": "<b>向 + (ทิศทาง/เป้าหมาย) + Verb</b>",
+    "example_cn": "向左走。",
+    "example_th": "Xiàng zuǒ zǒu. (เดินไปทางซ้าย)",
+    "note": "เน้นทิศทางของการกระทำ"
+  },
+  {
+    "hanzi": "为",
+    "pinyin": "wèi",
+    "meaning": "เพื่อ...",
+    "type": "คำบุพบท",
+    "structure": "<b>为 + (เป้าหมาย) + ...</b>",
+    "example_cn": "为大家服务。",
+    "example_th": "Wèi dàjiā fúwù. (บริการเพื่อทุกคน)",
+    "note": "ถ้าใช้ 为了 (wèile) จะเน้นวัตถุประสงค์มากกว่า"
+  },
+  {
+    "hanzi": "为了",
+    "pinyin": "wèile",
+    "meaning": "เพื่อที่จะ...",
+    "type": "คำบุพบท",
+    "structure": "<b>为了 + (จุดประสงค์)，(ผลลัพธ์)</b>",
+    "example_cn": "为了健康，我每天运动。",
+    "example_th": "Wèile jiànkāng, wǒ měitiān yùndòng. (เพื่อสุขภาพ ฉันออกกำลังกายทุกวัน)",
+    "note": "มักวางไว้หน้าประโยค"
+  },
+  {
+    "hanzi": "因为",
+    "pinyin": "yīnwèi",
+    "meaning": "เพราะว่า...",
+    "type": "คำสันธาน",
+    "structure": "<b>因为 + (เหตุ)，所以 + (ผล)</b>",
+    "example_cn": "因为下雨，所以我不去。",
+    "example_th": "Yīnwèi xiàyǔ, suǒyǐ wǒ bú qù. (เพราะว่าฝนตก ดังนั้นฉันเลยไม่ไป)",
+    "note": "บอกเหตุผล"
+  },
+  {
+    "hanzi": "所以",
+    "pinyin": "suǒyǐ",
+    "meaning": "ดังนั้น...",
+    "type": "คำสันธาน",
+    "structure": "<b>因为 ...，所以 ...</b>",
+    "example_cn": "他是中国人，所以中文很好。",
+    "example_th": "Tā shì Zhōngguó rén, suǒyǐ Zhōngwén hěn hǎo. (เขาเป็นคนจีน ดังนั้นภาษาจีนเลยเก่งมาก)",
+    "note": "บอกผลลัพธ์"
+  },
+  {
+    "hanzi": "如果",
+    "pinyin": "rúguǒ",
+    "meaning": "ถ้าหาก...",
+    "type": "คำสันธาน",
+    "structure": "<b>如果 ...，(就) ...</b>",
+    "example_cn": "如果你有空，我们就去玩。",
+    "example_th": "Rúguǒ nǐ yǒukòng, wǒmen jiù qù wán. (ถ้าเธอว่าง พวกเราก็จะไปเที่ยวกัน)",
+    "note": "บอกเงื่อนไขสมมติ"
+  },
+  {
+    "hanzi": "让",
+    "pinyin": "ràng",
+    "meaning": "ให้ (อนุญาต/สั่ง/ทำให้)",
+    "type": "คำกริยา",
+    "structure": "<b>A + 让 + B + Verb/Adj</b>",
+    "example_cn": "妈妈让我去买菜。",
+    "example_th": "Māma ràng wǒ qù mǎi cài. (แม่ให้ฉันไปจ่ายตลาด)",
+    "note": "มีความหมายคล้าย 'Tell/Let/Make' someone do something"
+  },
+  {
+    "hanzi": "叫",
+    "pinyin": "jiào",
+    "meaning": "สั่งให้ / ถูก (กระทำ)",
+    "type": "คำกริยา",
+    "structure": "<b>A + 叫 + B + Verb</b>",
+    "example_cn": "老师叫我回答问题。",
+    "example_th": "Lǎoshī jiào wǒ huídá wèntí. (ครูเรียกให้ฉันตอบคำถาม)",
+    "note": "ใช้ในความหมาย Passive Voice ได้ด้วย (คล้าย 被)"
+  },
+  {
+    "hanzi": "使",
+    "pinyin": "shǐ",
+    "meaning": "ทำให้ (ส่งผลให้)",
+    "type": "คำกริยา",
+    "structure": "<b>A + 使 + B + Adj/Verb</b>",
+    "example_cn": "这消息使我很兴奋。",
+    "example_th": "Zhè xiāoxi shǐ wǒ hěn xīngfèn. (ข่าวนี้ทำให้ฉันตื่นเต้นมาก)",
+    "note": "เป็นภาษาเขียนมากกว่า 让 หรือ 叫"
+  },
+  {
+    "hanzi": "离",
+    "pinyin": "lí",
+    "meaning": "ห่างจาก",
+    "type": "คำบุพบท",
+    "structure": "<b>A + 离 + B + (ไกล/ใกล้/ระยะทาง)</b>",
+    "example_cn": "学校离我家很近。",
+    "example_th": "Xuéxiào lí wǒ jiā hěn jìn. (โรงเรียนห่างจากบ้านฉันใกล้มาก)",
+    "note": "ใช้บอกระยะห่างของสถานที่หรือเวลา"
+  },
+  {
+    "hanzi": "从",
+    "pinyin": "cóng",
+    "meaning": "จาก",
+    "type": "คำบุพบท",
+    "structure": "<b>从 + (จุดเริ่มต้น) + 到 + (จุดสิ้นสุด)</b>",
+    "example_cn": "从北京到上海。",
+    "example_th": "Cóng Běijīng dào Shànghǎi. (จากปักกิ่งถึงเซี่ยงไฮ้)",
+    "note": "ใช้ได้ทั้งเวลาและสถานที่"
+  },
+  {
+    "hanzi": "多么",
+    "pinyin": "duōme",
+    "meaning": "ช่าง...เหลือเกิน / ขนาดไหน",
+    "type": "กริยาวิเศษณ์",
+    "structure": "<b>多么 + Adj + 啊！</b>",
+    "example_cn": "这里多么漂亮啊！",
+    "example_th": "Zhèlǐ duōme piàoliang a! (ที่นี่ช่างสวยงามเหลือเกิน)",
+    "note": "ใช้ในประโยคอุทาน"
+  },
+  {
+    "hanzi": "极",
+    "pinyin": "jí",
+    "meaning": "สุดๆ / ...มาก",
+    "type": "กริยาวิเศษณ์",
+    "structure": "<b>Adj + 极了</b>",
+    "example_cn": "好吃极了！",
+    "example_th": "Hǎochī jí le! (อร่อยสุดๆ ไปเลย)",
+    "note": "วางไว้หลังคำคุณศัพท์เสมอ"
+  },
+  {
+    "hanzi": "有点儿",
+    "pinyin": "yǒudiǎnr",
+    "meaning": "นิดหน่อย (เชิงลบ)",
+    "type": "กริยาวิเศษณ์",
+    "structure": "<b>有点儿 + Adj</b>",
+    "example_cn": "今天有点儿累。",
+    "example_th": "Jīntiān yǒudiǎnr lèi. (วันนี้เหนื่อยหน่อยๆ)",
+    "note": "มักใช้บ่น หรือแสดงความไม่พอใจเล็กน้อย"
+  },
+  {
+    "hanzi": "一点儿",
+    "pinyin": "yìdiǎnr",
+    "meaning": "นิดหน่อย (จำนวน)",
+    "type": "ลักษณนาม",
+    "structure": "<b>Verb + 一点儿 + Noun</b> <br>หรือ <b>Adj + 一点儿</b>",
+    "example_cn": "快一点儿！",
+    "example_th": "Kuài yìdiǎnr! (เร็วหน่อย!)",
+    "note": "ใช้บอกปริมาณ หรือการเปรียบเทียบ"
   }
 ]
