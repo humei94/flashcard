@@ -4728,15 +4728,6 @@
     "note": "Verb + 着"
   },
   {
-    "hanzi": "真",
-    "pinyin": "zhēn",
-    "meaning": "จริง",
-    "type": "กริยาวิเศษณ์",
-    "example_cn": "真好！",
-    "example_th": "Zhēn hǎo! (ดีจริงๆ)",
-    "note": "Really"
-  },
-  {
     "hanzi": "正在",
     "pinyin": "zhèngzài",
     "meaning": "กำลัง...อยู่",
@@ -5408,15 +5399,6 @@
     "example_cn": "再来一次",
     "example_th": "Zài lái yí cì (เอาอีกครั้ง)",
     "note": "Again"
-  },
-  {
-    "hanzi": "真",
-    "pinyin": "zhēn",
-    "meaning": "จริง",
-    "type": "กริยาวิเศษณ์",
-    "example_cn": "真好",
-    "example_th": "Zhēn hǎo (ดีจริงๆ)",
-    "note": "Really"
   },
   {
     "hanzi": "正在",
